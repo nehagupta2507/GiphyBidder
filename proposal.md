@@ -12,6 +12,10 @@ Select a gif that will best fit a provided sentence and receive the most coins f
 
 ## Sketch
 
+![sketch_1](./groupWork/WIN_20190704_21_01_29_Pro.jpg)
+![sketch_2](./groupWork/WIN_20190704_21_01_38_Pro.jpg)
+![sketch_3](./groupWork/WIN_20190704_21_01_47_Pro.jpg)
+
 ## API
 
 [Open Trivia DB](https://opentdb.com/api_config.php)
