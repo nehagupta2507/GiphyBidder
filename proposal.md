@@ -6,22 +6,22 @@
 - Neha
 - Héctor
 
-## Description
+## Description 📜
 
 Select a gif that will best fit a provided sentence and receive the most coins from other players on each round. At the end of all rounds, the player with most top gifs wins. 
 
-## Sketch
+## Sketch 🖌
 
 ![sketch_1](./groupWork/WIN_20190704_21_01_29_Pro.jpg)
 ![sketch_2](./groupWork/WIN_20190704_21_01_38_Pro.jpg)
 ![sketch_3](./groupWork/WIN_20190704_21_01_47_Pro.jpg)
 
-## API
+## API 💻
 
-[Open Trivia DB](https://opentdb.com/api_config.php)
-[Giphy](https://developers.giphy.com/)
+- [Open Trivia DB](https://opentdb.com/api_config.php)
+- [Giphy](https://developers.giphy.com/)
 
-## Tasks
+## Tasks ✔️
 
 - Each player begins with coins with a total value of 10 each round
 - A random sentence is given
@@ -36,7 +36,7 @@ Select a gif that will best fit a provided sentence and receive the most coins f
 - every 2 seconds show the gif from last to first
 - the image with the most coins wins the round
 
-Coins distribution per number of players
+Coins distribution per number of players 💰
 
 - 4 players
     - 5,3,1
