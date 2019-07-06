@@ -25,6 +25,7 @@ Build an multi-player online game to find a funny gif to respond to the provided
 - all players get to see all the selected images in random order.
 - Players should be able to bid on the images displayed.
 - Once everyone has bid, we should be able to assign "total value" to each image and display the winning image and player corresponding to that image.
+Optional/ Addon:-
 - After "n" rounds, final scoreboard should be displayed! with option to restart or replay the game(with same players) display the gifs selected and words used to search
 
 
