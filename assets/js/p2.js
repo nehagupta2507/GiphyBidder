@@ -3,13 +3,19 @@ let searchTerms = []
 let selectedImage = []
 
 $(function () {
+    // look for gif
     $(document).on("click", "#searchGif", loadData);
+    // switch between classes 
     $(document).on("mouseenter", ".gifOption", toggleClass);
     $(document).on("mouseleave", ".gifOption", toggleClass);
-    $(document).on("focus", "#searchTerm", hideDiv);
+    // select gif
     $(document).on("click", ".gifOption", imgSelected);
-
+    // make sure only p2 displays
+    $(document).on("focus", "#searchTerm", hideDiv);
+    // allow keyboard 
     $(document).on("keyup", "button", buttonSelected);
+
+    $('#questionPage').hide();
 });
 
 // able to use keyboard
@@ -105,4 +111,18 @@ function imgSelected(e) {
     console.log($(item).attr('src'))
     $(item).addClass('gifSelected').removeClass('gifOption')
     $('.gifOption').hide()
+}
+
+function showP2(){
+    // we should send the question to display here
+    setupPage2('test')
+}
+
+function setupPage2(questionText){
+    
+    $('#questionPage').show()
+    hideDiv()
+    let question = questionText.trim()
+    $('#questionQuote').html(question)
+    $('#searchTerm').focus()
 }
