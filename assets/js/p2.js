@@ -88,7 +88,7 @@ function addResults(imageList) {
         if (i <= numberOfImgResults) {
             let gif = imageList[i]
             // console.log(gif)
-            let img = $('<img src="' + gif.images.fixed_height.url + '" class="shadow rounded-pill gifOption" data-id="' + gif.id + '" alt="' + gif.title + '"  title="' + gif.title + '" data-toggle="tooltip" data-placement="top">')
+            let img = $('<img src="' + gif.images.fixed_height.url + '" class="mw-100 shadow rounded-pill gifOption" data-id="' + gif.id + '" alt="' + gif.title + '"  title="' + gif.title + '" data-toggle="tooltip" data-placement="top">')
             let divCol = $('<button class="p-0 m-2 border-0 bg-transparent">')
             divCol.append(img)
             $('#results').append(divCol)
