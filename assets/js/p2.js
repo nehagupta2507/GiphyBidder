@@ -8,7 +8,17 @@ $(function () {
     $(document).on("mouseleave", ".gifOption", toggleClass);
     $(document).on("focus", "#searchTerm", hideDiv);
     $(document).on("click", ".gifOption", imgSelected);
+
+    $(document).on("keyup", "button", buttonSelected);
 });
+
+// able to use keyboard
+function buttonSelected(e){
+    let item = e.currentTarget
+    if (e.keyCode === 13) {
+        console.log($(item).children().click())
+    }
+}
 
 // hide other blocks
 function hideDiv() {
