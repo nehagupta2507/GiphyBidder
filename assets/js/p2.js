@@ -16,7 +16,7 @@ $(function () {
 function buttonSelected(e){
     let item = e.currentTarget
     if (e.keyCode === 13) {
-        console.log($(item).children().click())
+        $(item).children().click()
     }
 }
 
