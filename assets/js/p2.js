@@ -118,11 +118,26 @@ function showP2(){
     setupPage2('test')
 }
 
-function setupPage2(questionText){
+function setupPage2(){
     
     $('#questionPage').show()
     hideDiv()
-    let question = questionText.trim()
-    $('#questionQuote').html(question)
+    getQuestion()
     $('#searchTerm').focus()
+}
+
+function getQuestion() {
+    const url = 'https://opentdb.com/api.php?amount=1&category=14&difficulty=easy'
+    
+    $.ajax({
+        url: url,
+        method: "GET",
+    }).fail(function () {
+        
+    }).then(function (response) {
+        let question = response.results[0].question
+        $('#questionQuote').html(question)
+    }).done(function () {
+        
+    });
 }
