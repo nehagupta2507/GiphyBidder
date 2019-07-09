@@ -3,13 +3,19 @@ let searchTerms = []
 let selectedImage = []
 
 $(function () {
+    // look for gif
     $(document).on("click", "#searchGif", loadData);
+    // switch between classes 
     $(document).on("mouseenter", ".gifOption", toggleClass);
     $(document).on("mouseleave", ".gifOption", toggleClass);
-    $(document).on("focus", "#searchTerm", hideDiv);
+    // select gif
     $(document).on("click", ".gifOption", imgSelected);
-
+    // make sure only p2 displays
+    $(document).on("focus", "#searchTerm", hideDiv);
+    // allow keyboard 
     $(document).on("keyup", "button", buttonSelected);
+
+    $('#questionPage').hide();
 });
 
 // able to use keyboard
@@ -82,7 +88,7 @@ function addResults(imageList) {
         if (i <= numberOfImgResults) {
             let gif = imageList[i]
             // console.log(gif)
-            let img = $('<img src="' + gif.images.fixed_height.url + '" class="shadow rounded-pill gifOption" data-id="' + gif.id + '" alt="' + gif.title + '"  title="' + gif.title + '" data-toggle="tooltip" data-placement="top">')
+            let img = $('<img src="' + gif.images.fixed_height.url + '" class="mw-100 shadow rounded-pill gifOption" data-id="' + gif.id + '" alt="' + gif.title + '"  title="' + gif.title + '" data-toggle="tooltip" data-placement="top">')
             let divCol = $('<button class="p-0 m-2 border-0 bg-transparent">')
             divCol.append(img)
             $('#results').append(divCol)
@@ -105,4 +111,33 @@ function imgSelected(e) {
     console.log($(item).attr('src'))
     $(item).addClass('gifSelected').removeClass('gifOption')
     $('.gifOption').hide()
+}
+
+function showP2(){
+    // we should send the question to display here
+    setupPage2('test')
+}
+
+function setupPage2(){
+    
+    $('#questionPage').show()
+    hideDiv()
+    getQuestion()
+    $('#searchTerm').focus()
+}
+
+function getQuestion() {
+    const url = 'https://opentdb.com/api.php?amount=1&category=14&difficulty=easy'
+    
+    $.ajax({
+        url: url,
+        method: "GET",
+    }).fail(function () {
+        
+    }).then(function (response) {
+        let question = response.results[0].question
+        $('#questionQuote').html(question)
+    }).done(function () {
+        
+    });
 }

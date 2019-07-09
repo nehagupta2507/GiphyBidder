@@ -17,7 +17,7 @@ Build an multi-player online game to find a funny gif to respond to the provided
 - to win
 - provide the users a way to escape the boredom of everyday life and intereact with their friends while bringing some challene and laughs
 
-4. Identify and prioritize essential user stories (limit this to 3 or fewer)?
+4. User stories
 - be able to select a player to begin game
     - change player name
 - the game will present a question/quote so that the user can search a gif to respond the question or complete the quote
