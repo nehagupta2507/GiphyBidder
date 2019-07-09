@@ -121,7 +121,7 @@ function showP2(){
 function setupPage2(){
     hideDiv()
     $('#questionPage').show()
-    $('#questionQuote').html(getQuestion())
+    // getQuestion()
     $('#searchTerm').focus()
 }
 
@@ -135,8 +135,9 @@ function getQuestion() {
         
     }).then(function (response) {
         question = response.results[0].question
+        $('#questionQuote').html(question)
     }).done(function () {
-        return question    
+            
     });
 
 }
