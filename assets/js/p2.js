@@ -119,25 +119,24 @@ function showP2(){
 }
 
 function setupPage2(){
-    
-    $('#questionPage').show()
     hideDiv()
-    getQuestion()
+    $('#questionPage').show()
+    $('#questionQuote').html(getQuestion())
     $('#searchTerm').focus()
 }
 
 function getQuestion() {
     const url = 'https://opentdb.com/api.php?amount=1&category=14&difficulty=easy'
-    
+    let quesion = ''
     $.ajax({
         url: url,
         method: "GET",
     }).fail(function () {
         
     }).then(function (response) {
-        let question = response.results[0].question
-        $('#questionQuote').html(question)
+        question = response.results[0].question
     }).done(function () {
-        
+        return question    
     });
+
 }
