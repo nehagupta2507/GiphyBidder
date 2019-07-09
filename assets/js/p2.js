@@ -115,7 +115,7 @@ function imgSelected(e) {
 
 function showP2(){
     // we should send the question to display here
-    setupPage2('test')
+    setupPage2()
 }
 
 function setupPage2(){
