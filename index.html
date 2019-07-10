@@ -28,10 +28,10 @@
 <body>
     <div class="container-fluid">
         <div id="page1" class="col-12">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@player1">Player 1</button>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-whatever="@player2">Player 2</button>
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="@player3">Player 3</button>
-                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" data-whatever="@player4">Player 4</button>
+                <button type="button" class="btn btn-primary playerBtn" data-toggle="modal" data-target="#exampleModal" data-id="Player 1" id="player1">Player 1</button>
+                <button type="button" class="btn btn-danger playerBtn" data-toggle="modal" data-target="#exampleModal" data-whatever="Player 2" id="player2">Player 2</button>
+                <button type="button" class="btn btn-info playerBtn" data-toggle="modal" data-target="#exampleModal"  data-whatever="Player 3" id="player3">Player 3</button>
+                <button type="button" class="btn btn-warning playerBtn" data-toggle="modal" data-target="#exampleModal"  data-whatever="Player 4" id="player4">Player 4</button>
 
                 
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -47,7 +47,7 @@
                         <form>
                           <div class="form-group">
                             <label for="message-text" class="col-form-label">Please type in your name!</label>
-                            <textarea class="form-control" id="message-text"></textarea>
+                            <input class="form-control" id="message-text">
                           </div>
                         </form>
                       </div>
@@ -140,6 +140,26 @@
             </div>
 
         </div>
+        <!-- Firebase chat setup -->
+        <!-- <div id="frame">
+            <div class="content">
+                <div class="contact-profile">
+                    <p style="margin-left: 0px">Group Chat</p>
+                
+                </div>
+                <div class="messages" id="chatBox">
+                    <ul> 
+                    </ul>
+                </div>
+                <div class="message-input">
+                    <div class="wrap">
+                    <input type="text" placeholder="Write your message..." />
+                    <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
     </div>
 
 </body>

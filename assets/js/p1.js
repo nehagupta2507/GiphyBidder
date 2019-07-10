@@ -1,6 +1,9 @@
 $(document).ready(function() {
+let playerId =""
+$("#questionPage").hide();
+$("#page3").hide();
 //Global Variables
-let playerNames = [];
+  let players;
 // Step 1: Modal dialog pop up
 $('#exampleModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
@@ -8,8 +11,10 @@ $('#exampleModal').on('show.bs.modal', function (event) {
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     var modal = $(this);
+    playerId = button.attr("id");
     modal.find('.modal-title').text('Welcome ' + recipient);
     modal.find('.modal-body input').val(recipient);
+
   })
 
 // Step 2   : Initialize Firebase
@@ -19,23 +24,109 @@ const firebaseConfig = {
     authDomain: "project1-db25d.firebaseapp.com",
     databaseURL: "https://project1-db25d.firebaseio.com",
     projectId: "project1-db25d",
-    storageBucket: "",
+    storageBucket: "group-chat-codinginfinite.appspot.com",
     messagingSenderId: "818437551042",
     appId: "1:818437551042:web:fe350cab90ffaf83"
   };
 firebase.initializeApp(firebaseConfig);
 let database = firebase.database();
 
-// Step 3: Capture confirm Click for adding the player name to the database
+//Step 3: Setting up firebase chat
+// var user = firebase.auth().signInAnonymously();
+//     firebase.auth().onAuthStateChanged(function(user) {
+//       if (user) {
+//         // User is signed in.
+//         var isAnonymous = user.isAnonymous;
+//         user_id = user.uid;
+//       } else {
+//         // User is signed out.
+//       }
+//     });
+
+//     function writeUserData(message) {
+//       db_ref.push({
+//           user_id: user_id,
+//           message: message
+//       });
+//   }
+
+//   $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+//   var user_id;
+//   function newMessage() {
+    
+//     message = $(".message-input input").val();
+//     if($.trim(message) == '') {
+//       return false;
+//     }
+//     writeUserData(message);
+//   };
+//   $('.submit').click(function() {
+//     newMessage();
+//   });
+//   $(window).on('keydown', function(e) {
+//     if (e.which == 13) {
+//       newMessage();
+//       return false;
+//     }
+//   });
+
+//   // get firebase database reference...
+// var db_ref = firebase.database().ref('/');
+// db_ref.on('child_added', function (data) {
+//   var type;
+//   if(data.val().user_id == user_id){
+//     type="sent";
+//   }
+//   else{
+//     type="replies";
+//   }
+//   $('<li class="'+type+'"><p>' + data.val().message + '</p></li>').appendTo($('.messages ul'));
+//   $('.message-input input').val(null);
+//   $('.contact.active .preview').html('<span>You: </span>' + data.val().message);
+//     $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, 0);
+// });
+
+//Step 4: Capture confirm Click for adding the player name to the database
 
 $("#playerName").on("click", function(event){
 // Don't refresh the page! Prevent form from submitting itself.
 event.preventDefault();
-playerNames= $("#message-text").val();
-console.log(playerNames);
+$("#exampleModal").modal("hide");
+let idVal = "#" + playerId;
+$(idVal).prop("disabled", true);
+players = $("#message-text");
+console.log(idVal);
+console.log($(idVal).text(players.val()));
+
+console.log(playerName);
+$()
 //Adding initial data to your Firebase database.
-database.ref().push({
-    playerName: playerNames
-})
+database.ref("buttons/" + playerId).update(true);
+players.val ('');
 });
+
+if($(".playerBtn:disabled").length === 3){
+  $("#page1").hide();
+  $("#questionPage").show();
+}
+
+database.ref("buttons").on('value', function(snapshot){
+  snapshot.forEach(function(child, index){
+    $("#"+ child.key).attr("disabled", child.val())
+  })
+
+})
+
+//creating db
+createDB = () => {
+  database.ref().set({
+      appInitialized: true,
+        PlayerData :
+          {
+            dateAdded: firebase.database.ServerValue.TIMESTAMP,
+            players: '',
+            log: '',
+          }
+  })
+}
 })
