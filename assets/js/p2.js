@@ -104,40 +104,81 @@ function toggleClass(e) {
 }
 
 function imgSelected(e) {
+    $('#searchGroup').hide()
+
     $('body').tooltip('dispose').tooltip({
         selector: '.gifSelected'
     })
     let item = e.currentTarget
+    let gifSelected = $(item).attr('src');
     console.log($(item).attr('src'))
     $(item).addClass('gifSelected').removeClass('gifOption')
     $('.gifOption').hide()
+
+    sendResponseToDB(gifSelected)
 }
 
 function showP2(){
     // we should send the question to display here
-    setupPage2('test')
+    setupPage2()
 }
 
 function setupPage2(){
-    
-    $('#questionPage').show()
     hideDiv()
-    getQuestion()
+    $('#questionPage').show()
+    // getQuestion()
     $('#searchTerm').focus()
 }
 
 function getQuestion() {
     const url = 'https://opentdb.com/api.php?amount=1&category=14&difficulty=easy'
-    
+    let quesion = ''
     $.ajax({
         url: url,
         method: "GET",
     }).fail(function () {
         
     }).then(function (response) {
-        let question = response.results[0].question
+        question = response.results[0].question
         $('#questionQuote').html(question)
     }).done(function () {
-        
+            
     });
+
+}
+
+// let newLog = {}
+
+
+function sendResponseToDB(gifUrl) {
+    const firebaseConfig = {
+        apiKey: "AIzaSyDLiD3JSjpjHexN1pghGWNvyMlEaq5HIcY",
+        authDomain: "project1-db25d.firebaseapp.com",
+        databaseURL: "https://project1-db25d.firebaseio.com",
+        projectId: "project1-db25d",
+        storageBucket: "",
+        messagingSenderId: "818437551042",
+        appId: "1:818437551042:web:fe350cab90ffaf83"
+      };
+
+    let db = firebase.database();
+    let newLog = {
+        gifUrlLink:gifUrl
+    }
+    db.ref('gifSelected').push(newLog)
+
+    let gifList = db.ref('gifSelected')
+    gifList.on("value", function (resultData) {
+        let countImages = 0
+        resultData.forEach(function (child) {
+            countImages++
+        })
+        if (countImages === 4){
+            $('#page1').hide()
+            $('#questionPage').hide()
+            $('#page3').show()
+            console.log('all players ready')
+        }
+    });
+
 }
