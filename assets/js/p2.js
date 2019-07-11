@@ -130,7 +130,44 @@ function setupPage2(){
     $('#searchTerm').focus()
 }
 
+
+function setQuestion(){
+    const firebaseConfig = {
+        apiKey: "AIzaSyDLiD3JSjpjHexN1pghGWNvyMlEaq5HIcY",
+        authDomain: "project1-db25d.firebaseapp.com",
+        databaseURL: "https://project1-db25d.firebaseio.com",
+        projectId: "project1-db25d",
+        storageBucket: "",
+        messagingSenderId: "818437551042",
+        appId: "1:818437551042:web:fe350cab90ffaf83"
+      };
+
+    let question = firebase.database().ref('questionSelected/').orderByKey().limitToLast(1);
+    question.once("value").then(function (snap) {
+        // If they are connected..
+        let result = snap.val()
+        $.each(result, function(i){
+            $('#questionQuote').html(result[i])
+        })
+    })
+}
+
+
 function getQuestion() {
+    const firebaseConfig = {
+        apiKey: "AIzaSyDLiD3JSjpjHexN1pghGWNvyMlEaq5HIcY",
+        authDomain: "project1-db25d.firebaseapp.com",
+        databaseURL: "https://project1-db25d.firebaseio.com",
+        projectId: "project1-db25d",
+        storageBucket: "",
+        messagingSenderId: "818437551042",
+        appId: "1:818437551042:web:fe350cab90ffaf83"
+      };
+
+    let db = firebase.database();
+    
+
+
     const url = 'https://opentdb.com/api.php?amount=1&category=14&difficulty=easy'
     let quesion = ''
     $.ajax({
@@ -140,7 +177,8 @@ function getQuestion() {
         
     }).then(function (response) {
         question = response.results[0].question
-        $('#questionQuote').html(question)
+        db.ref('questionSelected').push(question)
+
     }).done(function () {
             
     });
