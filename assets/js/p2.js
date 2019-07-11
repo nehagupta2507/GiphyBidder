@@ -176,7 +176,7 @@ function sendResponseToDB(gifUrl) {
         resultData.forEach(function (child) {
             countImages++
         })
-        if (countImages === 4){
+        if (countImages > 4){
             $('#page1').hide()
             $('#questionPage').hide()
             $('#page3').show()
