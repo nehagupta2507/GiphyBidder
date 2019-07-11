@@ -10,9 +10,10 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 let database = firebase.database();
+let playerId;
 
 $(document).ready(function() {
-let playerId;
+
 $("#questionPage").hide();
 $("#page3").hide();
 //Global Variables
@@ -107,6 +108,7 @@ database.ref("buttons/" + playerId).set(true);
 players.val ('');
 
 
+
 });
 
 database.ref("buttons/").on('value', function(snapshot){
@@ -118,30 +120,28 @@ database.ref("buttons/").on('value', function(snapshot){
     console.log(childnode.val());
     idVal = "#" + childnode.key;
     $(idVal).prop("disabled", childnode.val());
-      if (childnode.val()== true) {
-        console.log("game is gull.let's begin");
+      if (childnode.val()== true) { 
         count++; 
       }
   })
   if(count===4){
+    console.log("game is full.let's begin");
     getQuestion();
     setQuestion();
     showP2()
   }
 })
-
-
-
-//creating db
-// createDB = () => {
-//   database.ref().set({
-//       appInitialized: true,
-//         PlayerData :
-//           {
-//             dateAdded: firebase.database.ServerValue.TIMESTAMP,
-//             players: '',
-//             log: '',
-//           }
-//   })
-// }
 })
+
+//once game is complete p3.js should call this to restart the game 
+function resetGame(){
+  database.ref("buttons/").once('value', function(snapshot){
+    snapshot.forEach(function(childnode){
+      database.ref("buttons/" + childnode.key).set(false); 
+    })
+  })
+  database.ref("gifSelected/").set(""); 
+  $("#page1").show();
+  $("#questionPage").hide();
+  $("#page3").hide();
+}
