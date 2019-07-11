@@ -31,6 +31,21 @@ $(document).ready(function () {
         };
     });
 
+    $("#submit-button").on("click", function() {
+        let checkedCount = 0;
+
+        for (let i = 0; i < radioInputs.length; i++) {
+            if (radioInputs[i].checked === true) {
+                checkedCount++;
+            };
+        };
+
+        if (checkedCount < 3) {
+            alert("Please select points for all the gifs.");
+        } else {
+            // input code to calculate score
+            alert("Calculating score...");
+        };
 
 
 });
