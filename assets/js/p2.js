@@ -130,6 +130,19 @@ function setupPage2(){
     $('#searchTerm').focus()
 }
 
+
+function setQuestion(){
+    let question = database.ref('questionSelected/').orderByKey().limitToLast(1);
+    question.once("value").then(function (snap) {
+        // If they are connected..
+        let result = snap.val()
+        $.each(result, function(i){
+            $('#questionQuote').html(result[i])
+        })
+    })
+}
+
+
 function getQuestion() {
     const url = 'https://opentdb.com/api.php?amount=1&category=14&difficulty=easy'
     let quesion = ''
@@ -140,7 +153,8 @@ function getQuestion() {
         
     }).then(function (response) {
         question = response.results[0].question
-        $('#questionQuote').html(question)
+        database.ref('questionSelected').push(question)
+
     }).done(function () {
             
     });
@@ -151,23 +165,12 @@ function getQuestion() {
 
 
 function sendResponseToDB(gifUrl) {
-    const firebaseConfig = {
-        apiKey: "AIzaSyDLiD3JSjpjHexN1pghGWNvyMlEaq5HIcY",
-        authDomain: "project1-db25d.firebaseapp.com",
-        databaseURL: "https://project1-db25d.firebaseio.com",
-        projectId: "project1-db25d",
-        storageBucket: "",
-        messagingSenderId: "818437551042",
-        appId: "1:818437551042:web:fe350cab90ffaf83"
-      };
-
-    let db = firebase.database();
     let newLog = {
         gifUrlLink:gifUrl
     }
-    db.ref('gifSelected').push(newLog)
+    database.ref('gifSelected').push(newLog)
 
-    let gifList = db.ref('gifSelected')
+    let gifList = database.ref('gifSelected')
     gifList.on("value", function (resultData) {
         let countImages = 0
         resultData.forEach(function (child) {
