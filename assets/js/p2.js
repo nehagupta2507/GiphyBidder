@@ -165,10 +165,17 @@ function getQuestion() {
 
 
 function sendResponseToDB(gifUrl) {
-    let newLog = {
-        gifUrlLink:gifUrl
+    let newLog = {}
+    console.log('playerId: ' + playerId)
+    newLog[playerId] = 
+    {
+        gifUrlLink:gifUrl,
+        pName: playerName,
+        pId: playerId
     }
-    database.ref('gifSelected').push(newLog)
+    let t = database.ref('gifSelected').update(newLog)
+    // console.log('saved: ' + t.key)
+    // database.ref('gifSelected/ ' + playerId).set(newLog)
 
     let gifList = database.ref('gifSelected')
     gifList.on("value", function (resultData) {
@@ -176,7 +183,7 @@ function sendResponseToDB(gifUrl) {
         resultData.forEach(function (child) {
             countImages++
         })
-        if (countImages > 4){
+        if (countImages > 3){
             $('#page1').hide()
             $('#questionPage').hide()
             $('#page3').show()

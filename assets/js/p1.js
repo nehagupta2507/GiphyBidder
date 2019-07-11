@@ -10,11 +10,11 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 let database = firebase.database();
-let playerId;
+let playerId = 'test';
+let playerName;
 
 $(document).ready(function() {
-let playerId;
-let playerName;
+
 $("#questionPage").hide();
 $("#page3").hide();
 //Global Variables
