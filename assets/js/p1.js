@@ -1,5 +1,5 @@
 $(document).ready(function() {
-let playerId =""
+let playerId;
 $("#questionPage").hide();
 $("#page3").hide();
 //Global Variables
@@ -99,10 +99,11 @@ console.log(idVal);
 console.log($(idVal).text(players.val()));
 
 console.log(playerName);
-$()
 //Adding initial data to your Firebase database.
-database.ref("buttons/" + playerId).update(true);
+database.ref("buttons/" + playerId).set(true);
 players.val ('');
+
+
 });
 
 if($(".playerBtn:disabled").length === 3){
@@ -111,22 +112,23 @@ if($(".playerBtn:disabled").length === 3){
 }
 
 database.ref("buttons").on('value', function(snapshot){
-  snapshot.forEach(function(child, index){
-    $("#"+ child.key).attr("disabled", child.val())
-  })
+  console.log(snapshot);
+  let idVal = "#" + playerId;
+  console.log(idVal);
+  $(idVal).prop("disabled", true);
 
 })
 
 //creating db
-createDB = () => {
-  database.ref().set({
-      appInitialized: true,
-        PlayerData :
-          {
-            dateAdded: firebase.database.ServerValue.TIMESTAMP,
-            players: '',
-            log: '',
-          }
-  })
-}
+// createDB = () => {
+//   database.ref().set({
+//       appInitialized: true,
+//         PlayerData :
+//           {
+//             dateAdded: firebase.database.ServerValue.TIMESTAMP,
+//             players: '',
+//             log: '',
+//           }
+//   })
+// }
 })
