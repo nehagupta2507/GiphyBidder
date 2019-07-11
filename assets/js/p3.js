@@ -1,39 +1,7 @@
 $(document).ready(function () {
 
-<<<<<<< HEAD
-    // const firebaseConfig = {
-    //     apiKey: "AIzaSyDLiD3JSjpjHexN1pghGWNvyMlEaq5HIcY",
-    //     authDomain: "project1-db25d.firebaseapp.com",
-    //     databaseURL: "https://project1-db25d.firebaseio.com",
-    //     projectId: "project1-db25d",
-    //     storageBucket: "",
-    //     messagingSenderId: "818437551042",
-    //     appId: "1:818437551042:web:fe350cab90ffaf83"
-    // };
-
-    let database = firebase.database();
-    let playersList = database.ref("gifSelected");
-
-    playersList.on("value", function (snapshot) {
-        let gifCount = 0;
-        // console.log(child.val().gifUrlLink);
-
-        snapshot.forEach(function (child) {
-            console.log(child.val().gifUrlLink);
-            // console.log(index);
-            // $("#gif-" + (gifCount + 1)).attr("src", child.val().gifUrlLink);
-            gifCount++;
-            $("#gif-" + gifCount).attr("src", child.val().gifUrlLink);
-        });
-
-        if (gifCount === 4) {
-            console.log("all players are ready");
-        };
-    });
-=======
     let radioInputs = $(":radio");
     // console.log(radioInputs);
->>>>>>> dev
 
     // playersList.on("child_added", function(snapshot) {
     //     console.log(snapshot.val().gifUrlLink);
@@ -63,10 +31,6 @@ $(document).ready(function () {
         };
     });
 
-<<<<<<< HEAD
-    $("#submit-button").on("click", function() {
-
-=======
 
 
 });
@@ -77,7 +41,6 @@ function getGifAnswers(){
 
     playersList.on("value", function (snapshot) {
         let gifCount = 0;
->>>>>>> dev
 
     });
 }
