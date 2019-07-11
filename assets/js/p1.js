@@ -1,5 +1,18 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyDLiD3JSjpjHexN1pghGWNvyMlEaq5HIcY",
+  authDomain: "project1-db25d.firebaseapp.com",
+  databaseURL: "https://project1-db25d.firebaseio.com",
+  projectId: "project1-db25d",
+  storageBucket: "project1-db25d.appspot.com",
+  messagingSenderId: "818437551042",
+  appId: "1:818437551042:web:fe350cab90ffaf83"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+let database = firebase.database();
+
 $(document).ready(function() {
-let playerId =""
+let playerId;
 $("#questionPage").hide();
 $("#page3").hide();
 //Global Variables
@@ -19,17 +32,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 
 // Step 2   : Initialize Firebase
 // This is the code we copied and pasted from app page
-const firebaseConfig = {
-    apiKey: "AIzaSyDLiD3JSjpjHexN1pghGWNvyMlEaq5HIcY",
-    authDomain: "project1-db25d.firebaseapp.com",
-    databaseURL: "https://project1-db25d.firebaseio.com",
-    projectId: "project1-db25d",
-    storageBucket: "group-chat-codinginfinite.appspot.com",
-    messagingSenderId: "818437551042",
-    appId: "1:818437551042:web:fe350cab90ffaf83"
-  };
-firebase.initializeApp(firebaseConfig);
-let database = firebase.database();
+
 
 //Step 3: Setting up firebase chat
 // var user = firebase.auth().signInAnonymously();
@@ -99,10 +102,11 @@ console.log(idVal);
 console.log($(idVal).text(players.val()));
 
 console.log(playerName);
-$()
 //Adding initial data to your Firebase database.
-database.ref("buttons/" + playerId).update(true);
+database.ref("buttons/" + playerId).set(true);
 players.val ('');
+
+
 });
 
 if($(".playerBtn:disabled").length === 3){
@@ -111,22 +115,23 @@ if($(".playerBtn:disabled").length === 3){
 }
 
 database.ref("buttons").on('value', function(snapshot){
-  snapshot.forEach(function(child, index){
-    $("#"+ child.key).attr("disabled", child.val())
-  })
+  console.log(snapshot);
+  let idVal = "#" + playerId;
+  console.log(idVal);
+  $(idVal).prop("disabled", true);
 
 })
 
 //creating db
-createDB = () => {
-  database.ref().set({
-      appInitialized: true,
-        PlayerData :
-          {
-            dateAdded: firebase.database.ServerValue.TIMESTAMP,
-            players: '',
-            log: '',
-          }
-  })
-}
+// createDB = () => {
+//   database.ref().set({
+//       appInitialized: true,
+//         PlayerData :
+//           {
+//             dateAdded: firebase.database.ServerValue.TIMESTAMP,
+//             players: '',
+//             log: '',
+//           }
+//   })
+// }
 })

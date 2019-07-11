@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+<<<<<<< HEAD
     // const firebaseConfig = {
     //     apiKey: "AIzaSyDLiD3JSjpjHexN1pghGWNvyMlEaq5HIcY",
     //     authDomain: "project1-db25d.firebaseapp.com",
@@ -29,6 +30,10 @@ $(document).ready(function () {
             console.log("all players are ready");
         };
     });
+=======
+    let radioInputs = $(":radio");
+    // console.log(radioInputs);
+>>>>>>> dev
 
     // playersList.on("child_added", function(snapshot) {
     //     console.log(snapshot.val().gifUrlLink);
@@ -58,10 +63,21 @@ $(document).ready(function () {
         };
     });
 
+<<<<<<< HEAD
     $("#submit-button").on("click", function() {
 
+=======
 
-    });
 
 });
 
+
+function getGifAnswers(){
+    let playersList = database.ref("gifSelected");
+
+    playersList.on("value", function (snapshot) {
+        let gifCount = 0;
+>>>>>>> dev
+
+    });
+}
