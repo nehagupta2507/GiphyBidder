@@ -13,6 +13,7 @@ let database = firebase.database();
 
 $(document).ready(function() {
 let playerId;
+let playerName;
 $("#questionPage").hide();
 $("#page3").hide();
 //Global Variables
@@ -100,7 +101,7 @@ $(idVal).prop("disabled", true);
 players = $("#message-text");
 console.log(idVal);
 console.log($(idVal).text(players.val()));
-
+playerName = players.val();
 console.log(playerName);
 //Adding initial data to your Firebase database.
 database.ref("buttons/" + playerId).set(true);
