@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     let radioInputs = $(":radio");
-    console.log(radioInputs);
+    // console.log(radioInputs);
 
     $(".form-check-input").on("click", function () {
         let value = $(this).attr("value");
@@ -23,6 +23,12 @@ $(document).ready(function () {
         };
     });
 
+
+
+});
+
+
+function getGifAnswers(){
     const firebaseConfig = {
         apiKey: "AIzaSyDLiD3JSjpjHexN1pghGWNvyMlEaq5HIcY",
         authDomain: "project1-db25d.firebaseapp.com",
@@ -51,6 +57,4 @@ $(document).ready(function () {
             console.log("all players ready");
         };
     });
-
-});
-
+}
