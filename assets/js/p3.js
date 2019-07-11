@@ -41,7 +41,8 @@ $(document).ready(function () {
             alert("Please select points for all the gifs.");
         } else {
             // input code to calculate score
-            alert("Calculating score...");
+            // alert("Calculating score...");
+            calculateScore();
         };
     });
     
@@ -53,7 +54,7 @@ $(document).ready(function () {
             // console.log(child.val().gifUrlLink);
     
             snapshot.forEach(function (child) {
-                console.log(child.val().gifUrlLink);
+                // console.log(child.val().gifUrlLink);
                 // console.log(index);
                 // $("#gif-" + (gifCount + 1)).attr("src", child.val().gifUrlLink);
                 gifCount++;
@@ -61,11 +62,28 @@ $(document).ready(function () {
             });
     
             if (gifCount === 4) {
-                console.log("all players are ready");
+                // console.log("all players are ready");
             };
         });
     };
     showSelectedGifs();
+
+    let player1Score = 0;
+    let player2Score = 0;
+    let player3Score = 0;
+    let player4Score = 0;
+
+    function calculateScore () {
+        for (let i = 0; i < radioInputs.length; i++) {
+            if (radioInputs[i].checked === true) {
+                console.log(radioInputs[i]);
+                console.log($(radioInputs[i]).attr("name"));
+                console.log($(radioInputs[i]).attr("value"));
+                console.log($("#" + $(radioInputs[i]).attr("name")).attr("src"));
+            };
+        };
+    };
+
 });
     
 
