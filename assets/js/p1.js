@@ -109,18 +109,28 @@ players.val ('');
 
 });
 
-if($(".playerBtn:disabled").length === 3){
-  $("#page1").hide();
-  $("#questionPage").show();
-}
-
-database.ref("buttons").on('value', function(snapshot){
+database.ref("buttons/").on('value', function(snapshot){
   console.log(snapshot);
-  let idVal = "#" + playerId;
-  console.log(idVal);
-  $(idVal).prop("disabled", true);
-
+  let idVal;
+  let count=0;
+  snapshot.forEach(function(childnode){
+    console.log(childnode.key);
+    console.log(childnode.val());
+    idVal = "#" + childnode.key;
+    $(idVal).prop("disabled", childnode.val());
+      if (childnode.val()== true) {
+        console.log("game is gull.let's begin");
+        count++; 
+      }
+  })
+  if(count===4){
+    getQuestion();
+    setQuestion();
+    showP2()
+  }
 })
+
+
 
 //creating db
 // createDB = () => {
