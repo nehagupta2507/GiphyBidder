@@ -3,13 +3,19 @@ let searchTerms = []
 let selectedImage = []
 
 $(function () {
+    // look for gif
     $(document).on("click", "#searchGif", loadData);
+    // switch between classes 
     $(document).on("mouseenter", ".gifOption", toggleClass);
     $(document).on("mouseleave", ".gifOption", toggleClass);
-    $(document).on("focus", "#searchTerm", hideDiv);
+    // select gif
     $(document).on("click", ".gifOption", imgSelected);
-
+    // make sure only p2 displays
+    $(document).on("focus", "#searchTerm", hideDiv);
+    // allow keyboard 
     $(document).on("keyup", "button", buttonSelected);
+
+    $('#questionPage').hide();
 });
 
 // able to use keyboard
@@ -82,7 +88,7 @@ function addResults(imageList) {
         if (i <= numberOfImgResults) {
             let gif = imageList[i]
             // console.log(gif)
-            let img = $('<img src="' + gif.images.fixed_height.url + '" class="shadow rounded-pill gifOption" data-id="' + gif.id + '" alt="' + gif.title + '"  title="' + gif.title + '" data-toggle="tooltip" data-placement="top">')
+            let img = $('<img src="' + gif.images.fixed_height.url + '" class="mw-100 shadow rounded-pill gifOption" data-id="' + gif.id + '" alt="' + gif.title + '"  title="' + gif.title + '" data-toggle="tooltip" data-placement="top">')
             let divCol = $('<button class="p-0 m-2 border-0 bg-transparent">')
             divCol.append(img)
             $('#results').append(divCol)
@@ -98,11 +104,84 @@ function toggleClass(e) {
 }
 
 function imgSelected(e) {
+    $('#searchGroup').hide()
+
     $('body').tooltip('dispose').tooltip({
         selector: '.gifSelected'
     })
     let item = e.currentTarget
+    let gifSelected = $(item).attr('src');
     console.log($(item).attr('src'))
     $(item).addClass('gifSelected').removeClass('gifOption')
     $('.gifOption').hide()
+
+    sendResponseToDB(gifSelected)
+}
+
+function showP2(){
+    // we should send the question to display here
+    setupPage2()
+}
+
+function setupPage2(){
+    hideDiv()
+    $('#questionPage').show()
+    // getQuestion()
+    $('#searchTerm').focus()
+}
+
+
+function setQuestion(){
+    let question = database.ref('questionSelected/').orderByKey().limitToLast(1);
+    question.once("value").then(function (snap) {
+        // If they are connected..
+        let result = snap.val()
+        $.each(result, function(i){
+            $('#questionQuote').html(result[i])
+        })
+    })
+}
+
+
+function getQuestion() {
+    const url = 'https://opentdb.com/api.php?amount=1&category=14&difficulty=easy'
+    let quesion = ''
+    $.ajax({
+        url: url,
+        method: "GET",
+    }).fail(function () {
+        
+    }).then(function (response) {
+        question = response.results[0].question
+        database.ref('questionSelected').push(question)
+
+    }).done(function () {
+            
+    });
+
+}
+
+// let newLog = {}
+
+
+function sendResponseToDB(gifUrl) {
+    let newLog = {
+        gifUrlLink:gifUrl
+    }
+    database.ref('gifSelected').push(newLog)
+
+    let gifList = database.ref('gifSelected')
+    gifList.on("value", function (resultData) {
+        let countImages = 0
+        resultData.forEach(function (child) {
+            countImages++
+        })
+        if (countImages === 4){
+            $('#page1').hide()
+            $('#questionPage').hide()
+            $('#page3').show()
+            console.log('all players ready')
+        }
+    });
+
 }

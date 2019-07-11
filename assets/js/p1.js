@@ -1,3 +1,16 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyDLiD3JSjpjHexN1pghGWNvyMlEaq5HIcY",
+  authDomain: "project1-db25d.firebaseapp.com",
+  databaseURL: "https://project1-db25d.firebaseio.com",
+  projectId: "project1-db25d",
+  storageBucket: "project1-db25d.appspot.com",
+  messagingSenderId: "818437551042",
+  appId: "1:818437551042:web:fe350cab90ffaf83"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+let database = firebase.database();
+
 $(document).ready(function() {
 let playerId;
 $("#questionPage").hide();
@@ -19,17 +32,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 
 // Step 2   : Initialize Firebase
 // This is the code we copied and pasted from app page
-const firebaseConfig = {
-    apiKey: "AIzaSyDLiD3JSjpjHexN1pghGWNvyMlEaq5HIcY",
-    authDomain: "project1-db25d.firebaseapp.com",
-    databaseURL: "https://project1-db25d.firebaseio.com",
-    projectId: "project1-db25d",
-    storageBucket: "group-chat-codinginfinite.appspot.com",
-    messagingSenderId: "818437551042",
-    appId: "1:818437551042:web:fe350cab90ffaf83"
-  };
-firebase.initializeApp(firebaseConfig);
-let database = firebase.database();
+
 
 //Step 3: Setting up firebase chat
 // var user = firebase.auth().signInAnonymously();
