@@ -7,9 +7,6 @@ $(document).ready(function () {
     //     console.log(snapshot.val().gifUrlLink);
 
     // });
-
-    let radioInputs = $(":radio");
-    // console.log(radioInputs);
     
     $(".form-check-input").on("click", function () {
         let value = $(this).attr("value");
@@ -46,16 +43,30 @@ $(document).ready(function () {
             // input code to calculate score
             alert("Calculating score...");
         };
-
-
-});
-
-
-function getGifAnswers(){
-    let playersList = database.ref("gifSelected");
-
-    playersList.on("value", function (snapshot) {
-        let gifCount = 0;
-
     });
-}
+    
+    function showSelectedGifs() {
+        let playersList = database.ref("gifSelected");
+    
+        playersList.on("value", function (snapshot) {
+            let gifCount = 0;
+            // console.log(child.val().gifUrlLink);
+    
+            snapshot.forEach(function (child) {
+                console.log(child.val().gifUrlLink);
+                // console.log(index);
+                // $("#gif-" + (gifCount + 1)).attr("src", child.val().gifUrlLink);
+                gifCount++;
+                $("#gif-" + gifCount).attr("src", child.val().gifUrlLink);
+            });
+    
+            if (gifCount === 4) {
+                console.log("all players are ready");
+            };
+        });
+    };
+    showSelectedGifs();
+});
+    
+
+    
