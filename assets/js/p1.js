@@ -10,18 +10,13 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 let database = firebase.database();
-<<<<<<< HEAD
+//Global Variables
 let playerId;
 let playerName;
+let idVal;
 
 $(document).ready(function() {
-=======
-let playerId = 'test';
-let playerName;
-
-$(document).ready(function() {
-
->>>>>>> 4abcb96b6252dcbd3c3c405bc09a823f6bba37dd
+$("#page1").show(); 
 $("#questionPage").hide();
 $("#page3").hide();
 //Global Variables
@@ -104,24 +99,20 @@ $("#playerName").on("click", function(event){
 // Don't refresh the page! Prevent form from submitting itself.
 event.preventDefault();
 $("#exampleModal").modal("hide");
-let idVal = "#" + playerId;
-$(idVal).prop("disabled", true);
+idVal = "#" + playerId;
+//$(idVal).prop("disabled", true);
 players = $("#message-text");
 console.log(idVal);
-console.log($(idVal).text(players.val()));
 playerName = players.val();
 console.log(playerName);
+database
 //Adding initial data to your Firebase database.
 database.ref("buttons/" + playerId).set(true);
 players.val ('');
-
-
-
 });
 
 database.ref("buttons/").on('value', function(snapshot){
   console.log(snapshot);
-  let idVal;
   let count=0;
   snapshot.forEach(function(childnode){
     console.log(childnode.key);
@@ -139,6 +130,12 @@ database.ref("buttons/").on('value', function(snapshot){
     showP2()
   }
 })
+database.ref("gifSelected").once('value', function(snapshot){
+  snapshot.forEach(function(childnode){
+    database.ref("buttons/" + childnode.key).set(false); 
+  })
+})
+
 })
 
 //once game is complete p3.js should call this to restart the game 
