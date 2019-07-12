@@ -16,6 +16,7 @@ let playerName;
 $(document).ready(function() {
 $("#page1").show();
 $("#questionPage").hide();
+$("#page1").show();
 $("#page3").hide();
 //Global Variables
   let players;
