@@ -14,6 +14,7 @@ let playerId;
 let playerName;
 
 $(document).ready(function() {
+$("#page1").show();
 $("#questionPage").hide();
 $("#page3").hide();
 //Global Variables
