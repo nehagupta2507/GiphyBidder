@@ -57,11 +57,18 @@ $(document).ready(function () {
                 // console.log(child.val().gifUrlLink);
                 // console.log(index);
                 // $("#gif-" + (gifCount + 1)).attr("src", child.val().gifUrlLink);
-                gifCount++;
-                $("#gif-" + gifCount).attr("src", child.val().gifUrlLink);
+                if(playerId != child.val().pId) {
+                    gifCount++;
+                    $("#gif-" + gifCount).attr("src", child.val().gifUrlLink);
+                    $("#gif-" + gifCount).attr("data-playerId", child.val().pId);
+                    console.log($("#gif-" + gifCount).attr("data-playerId"));
+                    $("#gif-" + gifCount).attr("data-playerName", child.val().pName);
+
+
+                };
             });
     
-            if (gifCount === 4) {
+            if (gifCount === 3) {
                 // console.log("all players are ready");
             };
         });
@@ -74,13 +81,28 @@ $(document).ready(function () {
     let player4Score = 0;
 
     function calculateScore () {
+        let resultsCount = 0;
+
         for (let i = 0; i < radioInputs.length; i++) {
             if (radioInputs[i].checked === true) {
-                console.log(radioInputs[i]);
                 console.log($(radioInputs[i]).attr("name"));
                 console.log($(radioInputs[i]).attr("value"));
-                console.log($("#" + $(radioInputs[i]).attr("name")).attr("src"));
+                console.log($("#" + $(radioInputs[i]).attr("name")).attr("data-playerId"));
+                // console.log($(radioInputs[i]).attr("src"));
+
+                let result = {
+                    playerId: $("#" + $(radioInputs[i]).attr("name")).attr("data-playerId"),
+                    value: $(radioInputs[i]).attr("value")
+                };
+
+                database.ref("results").push(result);
+
+                resultsCount++;
             };
+        };
+        
+        if (resultsCount === 12) {
+            // show next page, need on "child-added" listener for all players
         };
     };
 
