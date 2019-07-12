@@ -10,7 +10,6 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 let database = firebase.database();
-//Global Variables
 let playerId;
 let playerName;
 let idVal;
