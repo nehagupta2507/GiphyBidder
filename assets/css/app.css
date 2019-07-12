@@ -3,6 +3,7 @@ body{
     background-color: #cccccc;
     color: rgb(86,33,16);
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .head{
