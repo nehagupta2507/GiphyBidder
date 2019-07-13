@@ -15,7 +15,7 @@ $(function () {
     // allow keyboard 
     $(document).on("keyup", "button", buttonSelected);
 
-    $("#questionPage").hide();
+    $("#page2").hide();
 });
 
 // able to use keyboard
@@ -117,7 +117,7 @@ function showP2() {
 
 function setupPage2() {
     hideDiv()
-    $("#questionPage").show()
+    $("#page2").show()
     $("#searchTerm").focus()
 }
 
@@ -168,7 +168,7 @@ function sendResponseToDB(gifUrl) {
             countImages++
         })
         if (countImages > 3) {
-            $("#questionPage").hide()
+            $("#page2").hide()
             showP3()
         }
     });

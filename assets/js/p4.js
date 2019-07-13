@@ -1,6 +1,6 @@
 function showP4() {
     $('#page1').hide()
-    $('#questionPage').hide()
+    $('#page2').hide()
     $('#page3').hide()
     $('#gameFull').hide()
     $('#page4').show()
