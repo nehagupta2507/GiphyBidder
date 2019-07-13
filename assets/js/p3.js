@@ -3,6 +3,8 @@ let player2Score = 0;
 let player3Score = 0;
 let player4Score = 0;
 
+let radioInputs = $(":radio");
+
 function resetResults() {
     database.ref("results").remove();
 };
@@ -23,8 +25,6 @@ function updateScore() {
 function showP3() {
     $("#page3").show();
     
-    let radioInputs = $(":radio");
-
     $(".form-check-input").on("click", function () {
         let value = $(this).attr("value");
         let dataGroup = $(this).attr("data-group");
