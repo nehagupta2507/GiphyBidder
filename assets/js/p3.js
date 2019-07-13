@@ -21,6 +21,8 @@ function updateScore() {
 };
 
 function showP3() {
+    $("#page3").show();
+    
     let radioInputs = $(":radio");
 
     $(".form-check-input").on("click", function () {
