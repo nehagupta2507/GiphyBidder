@@ -34,6 +34,13 @@ $('#exampleModal').on('show.bs.modal', function (event) {
     modal.find('.modal-body input').val(recipient);
 
   })
+// to hide all the buttons once a player has selected the button
+$(".playerBtn").on("click", function(){
+  $(this).removeClass('active');
+  $(this).addClass("inactive");
+  $(".active").hide();
+})
+
 
 // Step 2   : Initialize Firebase
 // This is the code we copied and pasted from app page
@@ -185,4 +192,5 @@ function resetGame(){
   $("#questionPage").hide();
   $("#page3").hide();
   $("#gameFull").hide();
+  resetResults(); //Calling from page4
 }
