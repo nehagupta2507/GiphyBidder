@@ -1,3 +1,8 @@
+let player1Score = 0;
+let player2Score = 0;
+let player3Score = 0;
+let player4Score = 0;
+
 $(document).ready(function() {
     let radioInputs = $(":radio");
     
@@ -40,9 +45,22 @@ $(document).ready(function() {
         };
     });
 
-    database.ref("questionSelected").orderByKey().limitToLast(1).on("child_added", function(snapshot) {
-        $("#page3Question").text(snapshot.val());
-    });
+    // database.ref("questionSelected").orderByKey().limitToLast(1).on("child_added", function(snapshot) {
+    //     $("#page3Question").text(snapshot.val());
+    // });
+
+    function showPage3Question() {
+        let question = database.ref("questionSelected").orderByKey().limitToLast(1);
+        question.once("value").then(function (snapshot) {
+            // If they are connected..
+            let result = snapshot.val();
+            $.each(result, function(i) {
+                $("#page3Question").html(result[i]);
+            });
+        });
+    };
+
+    showPage3Question();
 
     function showSelectedGifs() {
         let gifList = database.ref("gifSelected");
@@ -86,10 +104,6 @@ $(document).ready(function() {
     let resultList = database.ref("results");
     let resultsCount = 0;
 
-    let player1Score = 0;
-    let player2Score = 0;
-    let player3Score = 0;
-    let player4Score = 0;
 
     resultList.on("child_added", function(snapshot) {
         resultsCount++;
@@ -110,7 +124,9 @@ $(document).ready(function() {
         
         if (resultsCount === 12) {
             console.log("All players allocated gif points.");
-            // proceed from page3
+            // proceed to page4
+            $("#page3").hide();
+            $("#page4").show();
         };
 
         console.log(player1Score);
