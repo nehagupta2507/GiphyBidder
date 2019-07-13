@@ -31,6 +31,7 @@ function showP4(){
 
     new Chart(document.getElementById("resultsBar"), {
         type: 'bar',
+        beginAtZero: true,
         data: {
           labels: [player1NameResult,player2NameResult,player3NameResult,player4NameResult],
           datasets: [
@@ -51,3 +52,8 @@ function showP4(){
     });
 }
 
+function globalReset(){
+    resetGame();
+    playerId = playerName = idVal = players = ''
+    gameFull=false;
+}
