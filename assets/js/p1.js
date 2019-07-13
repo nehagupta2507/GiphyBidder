@@ -13,13 +13,14 @@ let database = firebase.database();
 let playerId;
 let playerName;
 let idVal;
+let gameFull;
+let players;
 
 $(document).ready(function() {
 $("#page1").show(); 
 $("#questionPage").hide();
 $("#page3").hide();
-//Global Variables
-  let players;
+ 
 // Step 1: Modal dialog pop up
 $('#exampleModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
@@ -95,6 +96,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 //Step 4: Capture confirm Click for adding the player name to the database
 
 $("#playerName").on("click", function(event){
+  let btnHide;
 // Don't refresh the page! Prevent form from submitting itself.
 event.preventDefault();
 $("#exampleModal").modal("hide");
@@ -103,11 +105,22 @@ idVal = "#" + playerId;
 players = $("#message-text");
 console.log(idVal);
 playerName = players.val();
-console.log(playerName);
-database
+
+//getting  only on click values of the player clicked ///??????????
+database.ref("buttons/").on("value",function(snapshot){
+  console.log(snapshot);
+  btnHide = snapshot.val().btn; 
+  for (i=0; i <=3; i++){
+    if (btnHide = false){
+    $(snapshot.key).hide();
+    }
+  }
+})
 //Adding initial data to your Firebase database.
-database.ref("buttons/" + playerId).set(true);
-players.val ('');
+database.ref("buttons/" + playerId).set({
+  playerName: playerName,
+  btn: true,
+});
 });
 
 database.ref("buttons/").on('value', function(snapshot){
@@ -115,25 +128,25 @@ database.ref("buttons/").on('value', function(snapshot){
   let count=0;
   snapshot.forEach(function(childnode){
     console.log(childnode.key);
-    console.log(childnode.val());
+    console.log(childnode.val().btn);
+    console.log(childnode.val().playerName);
     idVal = "#" + childnode.key;
-    $(idVal).prop("disabled", childnode.val());
-      if (childnode.val()== true) { 
+    console.log(idVal);
+    $(idVal).prop("disabled", childnode.val().btn);
+      if (childnode.val().btn === true) { 
         count++; 
       }
+    $("#" + childnode.key).text(childnode.val().playerName);
   })
   if(count===4){
+    gameFull = true;
     console.log("game is full.let's begin");
     getQuestion();
     setQuestion();
     showP2()
   }
 })
-database.ref("gifSelected").once('value', function(snapshot){
-  snapshot.forEach(function(childnode){
-    database.ref("buttons/" + childnode.key).set(false); 
-  })
-})
+//How to stop other players from joining if game is full
 
 })
 
@@ -141,9 +154,14 @@ database.ref("gifSelected").once('value', function(snapshot){
 function resetGame(){
   database.ref("buttons/").once('value', function(snapshot){
     snapshot.forEach(function(childnode){
-      database.ref("buttons/" + childnode.key).set(false); 
+      // database.ref("buttons/" + childnode.key).set(false);
+      database.ref("buttons/" + childnode.key).set({
+        playerName: childnode.key, 
+        btn: false,
+      });
     })
   })
+  gameFull = false;
   database.ref("gifSelected/").set(""); 
   $("#page1").show();
   $("#questionPage").hide();
