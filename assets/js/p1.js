@@ -13,15 +13,16 @@ let database = firebase.database();
 let playerId;
 let playerName;
 let idVal;
-let gameFull;
+let gameFull=false;
 let players;
 
 $(document).ready(function() {
 $("#page1").show(); 
 $("#questionPage").hide();
 $("#page3").hide();
+$("#gameFull").hide();
  
-// Step 1: Modal dialog pop up
+// Step 1: Modal dialog pop up for entering name
 $('#exampleModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
     var recipient = button.data('whatever'); // Extract info from data-* attributes
@@ -94,7 +95,6 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 // });
 
 //Step 4: Capture confirm Click for adding the player name to the database
-
 $("#playerName").on("click", function(event){
   let btnHide;
 // Don't refresh the page! Prevent form from submitting itself.
@@ -105,8 +105,6 @@ idVal = "#" + playerId;
 players = $("#message-text");
 console.log(idVal);
 playerName = players.val();
-
-//getting  only on click values of the player clicked ///??????????
 database.ref("buttons/").on("value",function(snapshot){
   console.log(snapshot);
   btnHide = snapshot.val().btn; 
@@ -140,21 +138,41 @@ database.ref("buttons/").on('value', function(snapshot){
   })
   if(count===4){
     gameFull = true;
-    console.log("game is full.let's begin");
+  }
+  if((count===4) && (playerName !== "")){
+    // gameFull = true;
+    console.log(playerName);
     getQuestion();
     setQuestion();
     showP2()
   }
 })
-//How to stop other players from joining if game is full
-
+//Step 5: Checking ig game is full or not
+database.ref("buttons/").once('value', function(snapshot){
+  let count=0;
+  snapshot.forEach(function(childnode){
+    idVal = "#" + childnode.key;
+    $(idVal).prop("disabled", childnode.val().btn);
+      if (childnode.val().btn === true) { 
+        count++; 
+      }  
+  })
+  if(count===4){
+    gameFull = true;
+  }
+if ((typeof playerName === "undefined") && (gameFull)){
+  console.log("game is full.let's wait");
+  $("#gameFull").show();  
+  $("#page1").hide();
+  $("#questionPage").hide();
+}
+})
 })
 
-//once game is complete p3.js should call this to restart the game 
+//Step 6: Once game is complete p3.js should call this to restart the game 
 function resetGame(){
   database.ref("buttons/").once('value', function(snapshot){
     snapshot.forEach(function(childnode){
-      // database.ref("buttons/" + childnode.key).set(false);
       database.ref("buttons/" + childnode.key).set({
         playerName: childnode.key, 
         btn: false,
@@ -166,4 +184,5 @@ function resetGame(){
   $("#page1").show();
   $("#questionPage").hide();
   $("#page3").hide();
+  $("#gameFull").hide();
 }
