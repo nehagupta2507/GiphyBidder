@@ -24,6 +24,7 @@ function updateScore() {
 
 function showP3() {
     $("#page3").show();
+
     $(document).ready(function() {
         radioInputs = $(":radio");
         $(".form-check-input").on("click", function () {
@@ -63,7 +64,6 @@ function showP3() {
                 $("#submit-button").hide();
             };
         });
-
 
         // database.ref("questionSelected").orderByKey().limitToLast(1).on("child_added", function(snapshot) {
         //     $("#page3Question").text(snapshot.val());
