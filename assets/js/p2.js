@@ -186,8 +186,11 @@ function sendResponseToDB(gifUrl) {
         if (countImages > 3){
             $('#page1').hide()
             $('#questionPage').hide()
-            $('#page3').show()
-            console.log('all players ready')
+            $('#page4').hide()
+            $('#gameFull').hide()
+            showP3()
+            // $('#page3').show()
+            // console.log('all players ready')
         }
     });
 
