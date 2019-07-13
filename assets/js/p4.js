@@ -31,7 +31,6 @@ function showP4(){
 
     new Chart(document.getElementById("resultsBar"), {
         type: 'bar',
-        beginAtZero: true,
         data: {
           labels: [player1NameResult,player2NameResult,player3NameResult,player4NameResult],
           datasets: [
@@ -43,17 +42,30 @@ function showP4(){
           ]
         },
         options: {
+            beginAtZero: true,
           legend: { display: false },
           title: {
             display: true,
             text: 'GIF Results'
-          }
-        }
+          },
+          scales: {
+                yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+                }]
+            }
+        },
     });
 }
 
 function globalReset(){
+    // $('#page1').show()
+    // $('#page4').hide()
     resetGame();
-    playerId = playerName = idVal = players = ''
-    gameFull=false;
+    location.reload();
+    // $('#page1').show()
+
+    // playerId = playerName = idVal = players = ''
+    // gameFull=false;
 }
