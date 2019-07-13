@@ -20,7 +20,7 @@ function updateScore() {
     };
 };
 
-function showP3 () {
+function showP3() {
     let radioInputs = $(":radio");
 
     $(".form-check-input").on("click", function () {
