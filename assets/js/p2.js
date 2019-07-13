@@ -19,7 +19,7 @@ $(function () {
 });
 
 // able to use keyboard
-function buttonSelected(e){
+function buttonSelected(e) {
     let item = e.currentTarget
     if (e.keyCode === 13) {
         $(item).children().click()
@@ -118,12 +118,12 @@ function imgSelected(e) {
     sendResponseToDB(gifSelected)
 }
 
-function showP2(){
+function showP2() {
     // we should send the question to display here
     setupPage2()
 }
 
-function setupPage2(){
+function setupPage2() {
     hideDiv()
     $('#questionPage').show()
     // getQuestion()
@@ -131,12 +131,12 @@ function setupPage2(){
 }
 
 
-function setQuestion(){
+function setQuestion() {
     let question = database.ref('questionSelected/').orderByKey().limitToLast(1);
     question.once("value").then(function (snap) {
         // If they are connected..
         let result = snap.val()
-        $.each(result, function(i){
+        $.each(result, function (i) {
             $('#questionQuote').html(result[i])
         })
     })
@@ -150,13 +150,13 @@ function getQuestion() {
         url: url,
         method: "GET",
     }).fail(function () {
-        
+
     }).then(function (response) {
         question = response.results[0].question
         database.ref('questionSelected').push(question)
 
     }).done(function () {
-            
+
     });
 
 }
@@ -167,12 +167,12 @@ function getQuestion() {
 function sendResponseToDB(gifUrl) {
     let newLog = {}
     console.log('playerId: ' + playerId)
-    newLog[playerId] = 
-    {
-        gifUrlLink:gifUrl,
-        pName: playerName,
-        pId: playerId
-    }
+    newLog[playerId] =
+        {
+            gifUrlLink: gifUrl,
+            pName: playerName,
+            pId: playerId
+        }
     let t = database.ref('gifSelected').update(newLog)
     // console.log('saved: ' + t.key)
     // database.ref('gifSelected/ ' + playerId).set(newLog)
@@ -183,7 +183,7 @@ function sendResponseToDB(gifUrl) {
         resultData.forEach(function (child) {
             countImages++
         })
-        if (countImages > 3){
+        if (countImages > 3) {
             $('#page1').hide()
             $('#questionPage').hide()
             $('#page4').hide()
