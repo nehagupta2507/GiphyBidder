@@ -1,16 +1,38 @@
 function showP4(){
+    $('#page1').hide()
+    $('#questionPage').hide()
+    $('#page3').hide()
+    $('#gameFull').hide()
     $('#page4').show()
-    $('#page4').empty()
-    let resultsBar = $('<canvas id="results" width="400" height="400"></canvas>')
+    let player1NameResult,player2NameResult,player3NameResult,player4NameResult = ""
 
-    $('#page4').append(resultsBar)
+    database.ref("buttons/").on('value', function(snapshot){
+        console.log(snapshot);
+        let count=0;
+        snapshot.forEach(function(childnode){
+            if( childnode.key === "player1"){
+                player1NameResult = childnode.val().playerName
+            }
+            if( childnode.key === "player2"){
+                player2NameResult = childnode.val().playerName
+            }
+
+            if( childnode.key === "player3"){
+                player3NameResult = childnode.val().playerName
+            }
+
+            if( childnode.key === "player4"){
+                player4NameResult = childnode.val().playerName
+            }
 
 
+        })
+    })
 
-    new Chart(document.getElementById("results"), {
+    new Chart(document.getElementById("resultsBar"), {
         type: 'bar',
         data: {
-          labels: ["Player1", "Player2", "Player3", "Player4"],
+          labels: [player1NameResult,player2NameResult,player3NameResult,player4NameResult],
           datasets: [
             {
               label: "Points",
