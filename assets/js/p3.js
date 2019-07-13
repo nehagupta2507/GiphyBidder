@@ -25,7 +25,7 @@ function updateScore() {
 function showP3() {
     $("#page3").show();
     $(document).ready(function() {
-        let radioInputs = $(":radio");
+        radioInputs = $(":radio");
         $(".form-check-input").on("click", function () {
             let value = $(this).attr("value");
             let dataGroup = $(this).attr("data-group");
