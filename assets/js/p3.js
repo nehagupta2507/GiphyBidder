@@ -27,6 +27,7 @@ function showP3() {
 
     $(document).ready(function() {
         radioInputs = $(":radio");
+        
         $(".form-check-input").on("click", function () {
             let value = $(this).attr("value");
             let dataGroup = $(this).attr("data-group");
