@@ -32,11 +32,12 @@
     <script src="./assets/js/p2.js"></script>
     <script src="./assets/js/p3.js"></script>
     <script src="./assets/js/p4.js"></script>
+    <script src="./assets/js/particles.min.js"></script>
+    <script src="./assets/js/particles.js"></script>
 </head>
 
-<body>
-    <div class="container-fluid">
-    <div id="particles-js"></div>
+<body id="particles-js">
+    <div id="particles-js" class="container-fluid bg-transparent">
         <div id = "gameFull" style="display: none;">
             <h2 class="display-5">Game is in Progress, Please retry in sometime</h2>
             <h2>Meanwhile, go through the instructions below:-</h2>
@@ -73,10 +74,10 @@
                 <div class="col-8" id="selectPlayer">
                 <br>
                 <h4 class="display-5">Select a Player to begin:</h4>
-                <button type="button" class="cols-3 btn btn-primary playerBtn active p-2" data-toggle="modal" data-target="#exampleModal" data-whatever="Player 1" id="player1">Player 1</button>
-                <button type="button" class="cols-3 btn btn-danger playerBtn active p-2" data-toggle="modal" data-target="#exampleModal" data-whatever="Player 2" id="player2">Player 2</button>
-                <button type="button" class="cols-3 btn btn-info playerBtn active p-2" data-toggle="modal" data-target="#exampleModal"  data-whatever="Player 3" id="player3">Player 3</button>
-                <button type="button" class="cols-3 btn btn-warning active playerBtn p-2" data-toggle="modal" data-target="#exampleModal"  data-whatever="Player 4" id="player4">Player 4</button>
+                <button type="button" class="cols-3 btn btn-primary-outline playerBtn active p-2" data-toggle="modal" data-target="#exampleModal" data-whatever="Player 1" id="player1">Player 1</button>
+                <button type="button" class="cols-3 btn btn-primary-outline playerBtn active p-2" data-toggle="modal" data-target="#exampleModal" data-whatever="Player 2" id="player2">Player 2</button>
+                <button type="button" class="cols-3 btn btn-primary-outline playerBtn active p-2" data-toggle="modal" data-target="#exampleModal"  data-whatever="Player 3" id="player3">Player 3</button>
+                <button type="button" class="cols-3 btn btn-primary-outline playerBtn active p-2" data-toggle="modal" data-target="#exampleModal"  data-whatever="Player 4" id="player4">Player 4</button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
