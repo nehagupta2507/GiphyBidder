@@ -1,3 +1,4 @@
+// Step 1: Setting up firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDLiD3JSjpjHexN1pghGWNvyMlEaq5HIcY",
   authDomain: "project1-db25d.firebaseapp.com",
@@ -22,7 +23,7 @@ $("#page2").hide();
 $("#page3").hide();
 $("#gameFull").hide();
  
-// Step 1: Modal dialog pop up for entering name
+// Step 2: Modal dialog pop up for entering name
 $('#exampleModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
     var recipient = button.data('whatever'); // Extract info from data-* attributes
@@ -40,11 +41,6 @@ $(".playerBtn").on("click", function(){
   $(this).addClass("inactive");
   $(".active").hide();
 })
-
-
-// Step 2   : Initialize Firebase
-// This is the code we copied and pasted from app page
-
 
 //Step 3: Setting up firebase chat
 // var user = firebase.auth().signInAnonymously();
@@ -84,8 +80,6 @@ $(".playerBtn").on("click", function(){
 //       return false;
 //     }
 //   });
-
-//   // get firebase database reference...
 // var db_ref = firebase.database().ref('/');
 // db_ref.on('child_added', function (data) {
 //   var type;

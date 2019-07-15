@@ -1,19 +1,26 @@
 body{
-    /* background-image: url("../images/bkg.jpg"); */
-    color: black;
-    /* background-size: cover;
-    background-repeat: no-repeat; */
-    font-family: 'Italianno', cursive;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Slabo 27px', serif;
     font-size: 40px;
-    /* font-family: 'Marck Script', cursive;
-    font-family: 'Mr Dafoe', cursive;
-    font-family: 'Italianno', cursive;
-    font-family: 'Niconne', cursive;
-    font-family: 'Rochester', cursive;   */
+    /* 
+    font-family: 'Pacifico', cursive;
+    font-family: 'Slabo 27px', serif;
+    font-family: 'Vollkorn', serif;  
+     */
+}
+#gameName{
+    font-family: 'Pacifico', cursive;
 }
 
 html {
-    height: 100%
+    height: 100%;
+    background: #41b3a3;;
+}
+
+.btn-primary-outline {
+  background-color: transparent;
+  border-color: black;
 }
 
 
@@ -31,16 +38,27 @@ html {
 
 }
 
-.playerBtn {
-    display:list-item;
-    justify-content: space-around;
-    flex-wrap: nowrap;
-    color: black;
+#game{
+    width: 600px;
+    margin: 0 auto;
     font-size: 20px;
-    font-family: 'Fugaz One', cursive;
-    margin: auto;
+    border-style: groove;
+    border-color: black;
+    border-radius: 10px;
 }
-
+#selectPlayer{
+    width: 600px;
+    margin: 0 auto;
+    font-size: 20px;
+    border-style: hidden;
+    border-color: black;
+    border-radius: 10px;
+}
+.playerBtn{
+    font-size: 30px;
+    display: inline;
+    justify-content: space-evenly;
+}
 .selected-gif {
     margin-left: 30px;
     margin-right: 30px;
