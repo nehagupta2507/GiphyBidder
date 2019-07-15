@@ -26,7 +26,7 @@
     <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
     <!--Google font link-->
-    <link href="https://fonts.googleapis.com/css?family=Fugaz+One|Italianno|Marck+Script|Mr+Dafoe|Niconne|Rochester&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Slabo+27px|Vollkorn&display=swap" rel="stylesheet">
 
     <script src="./assets/js/p1.js"></script>
     <script src="./assets/js/p2.js"></script>
@@ -36,59 +36,73 @@
 
 <body>
     <div class="container-fluid">
+    <div id="particles-js"></div>
         <div id = "gameFull" style="display: none;">
             <h2 class="display-5">Game is in Progress, Please retry in sometime</h2>
             <h2>Meanwhile, go through the instructions below:-</h2>
-                 <ul>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <br>
+                <ul>
+                    <li>Start by selecting a player tab. Input your name and click confirm, Once all players are in, the game will begin!</li>
+                    <li>You will be presented with the question, answer by making your best guess.</li>
+                    <li>You will be given gif's to choose from, you have to select the one which, you think, is most funny or cool gif.</li>
+                    <li>Once all players have selected the gifs, you will be presented with other players selection (gifs), to award points.</li>
+                    <li>The player with the maximum points wins the game!</li>
                 </ul>
         </div>
-
         <div id="page1" class="col-12" style="display: none;">
-                <div class="row  text-center">
-                    <div class="col-12" id="gameName">
-                        <h1 class="display-4 head">Game</h1>
+            <div class="row  text-center">
+                <div class="col-12" id="gameName">
+                    <h1 class="display-4 head">Bid on Gif's for fun!</h1>
+                    <br>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-8" id="game">
+                        <h4>Please read the instructions below:-</h4>
+                        <br>
+                        <ul>
+                        <li>Start by selecting a player tab. Input your name and click confirm, Once all players are in, the game will begin!</li>
+                        <li>You will be presented with the question, answer by making your best guess.</li>
+                        <li>You will be given gif's to choose from, you have to select the one which, you think, is most funny or cool gif.</li>
+                        <li>Once all players have selected the gifs, you will be presented with other players selection (gifs), to award points.</li>
+                        <li>The player with the maximum points wins the game!</li>
+                    </ul>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-8" id="selectPlayer">
+                <br>
+                <h4 class="display-5">Select a Player to begin:</h4>
+                <button type="button" class="cols-3 btn btn-primary playerBtn active p-2" data-toggle="modal" data-target="#exampleModal" data-whatever="Player 1" id="player1">Player 1</button>
+                <button type="button" class="cols-3 btn btn-danger playerBtn active p-2" data-toggle="modal" data-target="#exampleModal" data-whatever="Player 2" id="player2">Player 2</button>
+                <button type="button" class="cols-3 btn btn-info playerBtn active p-2" data-toggle="modal" data-target="#exampleModal"  data-whatever="Player 3" id="player3">Player 3</button>
+                <button type="button" class="cols-3 btn btn-warning active playerBtn p-2" data-toggle="modal" data-target="#exampleModal"  data-whatever="Player 4" id="player4">Player 4</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Welcome</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Please type in your name!</label>
+                                        <input class="form-control" id="message-text">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" id ="playerName">Confirm</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row text-center">
-                    <div class="col-12" id="game">
-                        <h2 class="display-5">Select a Player to begin playing the game</h2>
-                        <h4>Please read the instructions below:-</h4>
-                        <ul>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        </ul>
-                    </div>
-                        <button type="button" class="cols-3 btn btn-primary playerBtn active p-2" data-toggle="modal" data-target="#exampleModal" data-whatever="Player 1" id="player1">Player 1</button>
-                        <button type="button" class="cols-3 btn btn-danger playerBtn active p-2" data-toggle="modal" data-target="#exampleModal" data-whatever="Player 2" id="player2">Player 2</button>
-                        <button type="button" class="cols-3 btn btn-info playerBtn active p-2" data-toggle="modal" data-target="#exampleModal"  data-whatever="Player 3" id="player3">Player 3</button>
-                        <button type="button" class="cols-3 btn btn-warning active playerBtn p-2" data-toggle="modal" data-target="#exampleModal"  data-whatever="Player 4" id="player4">Player 4</button>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">Welcome</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form>
-                                        <div class="form-group">
-                                          <label for="message-text" class="col-form-label">Please type in your name!</label>
-                                          <input class="form-control" id="message-text">
-                                        </div>
-                                      </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                      <button type="submit" class="btn btn-primary" id ="playerName">Confirm</button>
-                                    </div>
-                                  </div>
-                                </div>
-                        </div>
-                </div>     
+            </div>  
+            </div>     
         </div>
         
         <div id="questionPage" class="row" style="display: none;">
