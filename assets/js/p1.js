@@ -19,7 +19,7 @@ let players;
 
 $(document).ready(function() {
 $("#page1").show(); 
-$("#questionPage").hide();
+$("#page2").hide();
 $("#page3").hide();
 $("#gameFull").hide();
  
@@ -165,7 +165,7 @@ if ((typeof playerName === "undefined") && (gameFull)){
   console.log("game is full.let's wait");
   $("#gameFull").show();  
   $("#page1").hide();
-  $("#questionPage").hide();
+  $("#page2").hide();
 }
 })
 })
@@ -183,7 +183,7 @@ function resetGame(){
   gameFull = false;
   database.ref("gifSelected/").set(""); 
   $("#page1").show();
-  $("#questionPage").hide();
+  $("#page2").hide();
   $("#page3").hide();
   $("#gameFull").hide();
   resetResults(); //Calling from page4
