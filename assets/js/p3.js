@@ -116,7 +116,7 @@ function showP3() {
                 showP4();
             };
         });
-    })
+    });
 };
 
 
