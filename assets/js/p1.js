@@ -43,58 +43,22 @@ $(".playerBtn").on("click", function(){
 })
 
 //Step 3: Setting up firebase chat
-// var user = firebase.auth().signInAnonymously();
-//     firebase.auth().onAuthStateChanged(function(user) {
-//       if (user) {
-//         // User is signed in.
-//         var isAnonymous = user.isAnonymous;
-//         user_id = user.uid;
-//       } else {
-//         // User is signed out.
-//       }
-//     });
+function login() {
+  var provider = new firebase.auth.signInAnonymously();
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        initChat(user);
+      }
+    });
 
-//     function writeUserData(message) {
-//       db_ref.push({
-//           user_id: user_id,
-//           message: message
-//       });
-//   }
-
-//   $(".messages").animate({ scrollTop: $(document).height() }, "fast");
-//   var user_id;
-//   function newMessage() {
-    
-//     message = $(".message-input input").val();
-//     if($.trim(message) == '') {
-//       return false;
-//     }
-//     writeUserData(message);
-//   };
-//   $('.submit').click(function() {
-//     newMessage();
-//   });
-//   $(window).on('keydown', function(e) {
-//     if (e.which == 13) {
-//       newMessage();
-//       return false;
-//     }
-//   });
-// var db_ref = firebase.database().ref('/');
-// db_ref.on('child_added', function (data) {
-//   var type;
-//   if(data.val().user_id == user_id){
-//     type="sent";
-//   }
-//   else{
-//     type="replies";
-//   }
-//   $('<li class="'+type+'"><p>' + data.val().message + '</p></li>').appendTo($('.messages ul'));
-//   $('.message-input input').val(null);
-//   $('.contact.active .preview').html('<span>You: </span>' + data.val().message);
-//     $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, 0);
-// });
-
+function initChat(user) {
+  // Get a Firebase Database ref
+  var chatRef = firebase.database().ref("chat");
+  // Create a Firechat instance
+  var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+  // Set the Firechat user
+  chat.setUser(user.uid, user.displayName);
+}
 //Step 4: Capture confirm Click for adding the player name to the database
 $("#playerName").on("click", function(event){
   let btnHide;
@@ -167,7 +131,6 @@ if ((typeof playerName === "undefined") && (gameFull)){
   $("#page1").hide();
   $("#page2").hide();
 }
-})
 })
 
 //Step 6: Once game is complete p3.js should call this to restart the game 
