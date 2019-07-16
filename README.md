@@ -1,6 +1,7 @@
 # GiphyBidder
 
 Build an multi-player online game to find a funny gif to respond to the provided sentence/quote.
+Checkout the app. [Live](http://giphybidder.tk/)
 
 1. Who is your target audience?
 - full time students
