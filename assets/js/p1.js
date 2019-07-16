@@ -22,6 +22,8 @@ $("#page1").show();
 $("#page2").hide();
 $("#page3").hide();
 $("#gameFull").hide();
+$("#firechat-wrapper").show();
+$("#googleSignOut").hide();
  
 // Step 2: Modal dialog pop up for entering name
 $('#exampleModal').on('show.bs.modal', function (event) {
@@ -42,23 +44,49 @@ $(".playerBtn").on("click", function(){
   $(".active").hide();
 })
 
-//Step 3: Setting up firebase chat
-function login() {
-  var provider = new firebase.auth.signInAnonymously();
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        initChat(user);
-      }
-    });
 
-function initChat(user) {
-  // Get a Firebase Database ref
-  var chatRef = firebase.database().ref("chat");
-  // Create a Firechat instance
-  var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-  // Set the Firechat user
-  chat.setUser(user.uid, user.displayName);
-}
+//Step 3: Setting up firebase chat
+// function googleSignIn() {
+
+//   var provider = new firebase.auth.GoogleAuthProvider();
+//   firebase.auth().signInWithPopup(provider).catch(function(error) {
+//     console.log("Error authenticating user:", error);
+//   });
+//   $("#googleSignOut").show();
+// }
+// firebase.auth().onAuthStateChanged(function(user) {
+//   // Once authenticated, instantiate Firechat with the logged in user
+//   if (user) {
+//     initChat(user);
+//   }
+// });
+
+// //adding sigin click
+// $("#googleSignIn").on("click", function(){
+//   googleSignIn();
+// });
+
+// function initChat(user) {
+//   // Get a Firebase Database ref
+//   var chatRef = firebase.database().ref("chat");
+
+//   // Create a Firechat instance
+//   var chat = new FirechatUI(chatRef, $("#firechat-wrapper"));
+
+//   // Set the Firechat user
+//   chat.setUser(user.uid, user.displayName);
+// }
+
+// //SignOut User
+// $("#googleSignOut").on("click", function(){  
+// firebase.auth().signOut().then(function() {
+//   // Sign-out successful.
+// }).catch(function(error) {
+//   // An error happened.
+// });
+// });
+
+
 //Step 4: Capture confirm Click for adding the player name to the database
 $("#playerName").on("click", function(event){
   let btnHide;
@@ -131,6 +159,7 @@ if ((typeof playerName === "undefined") && (gameFull)){
   $("#page1").hide();
   $("#page2").hide();
 }
+})
 })
 
 //Step 6: Once game is complete p3.js should call this to restart the game 
