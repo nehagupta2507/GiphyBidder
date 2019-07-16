@@ -70,14 +70,14 @@ function showP3() {
         //     $("#page3Question").text(snapshot.val());
         // });
 
-        let question = database.ref("questionSelected").orderByKey().limitToLast(1);
+        // let question = database.ref("questionSelected").orderByKey().limitToLast(1);
 
-        question.once("value").then(function (snapshot) {
-            let result = snapshot.val();
-            $.each(result, function (i) {
-                $("#page3Question").html(result[i]);
-            });
-        });
+        // question.once("value").then(function (snapshot) {
+        //     let result = snapshot.val();
+        //     $.each(result, function (i) {
+        //         $("#page3Question").html(result[i]);
+        //     });
+        // });
 
         let gifList = database.ref("gifSelected");
 
