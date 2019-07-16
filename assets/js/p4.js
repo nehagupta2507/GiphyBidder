@@ -43,7 +43,7 @@ function showP4() {
     let win = $('<h1>')
     let max = Math.max(...playScoreList)
     let maxPlayer = playScoreList.indexOf(max)
-    win.html(playNameList[maxPlayer])
+    win.html("    Winner is : " + playNameList[maxPlayer])
 
     $('#page4').show()
     $('#page4').prepend(win)
@@ -57,7 +57,7 @@ function showP4() {
             datasets: [
                 {
                     label: "Points",
-                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#ff0000", "#e8c3b9"],
                     data: [player1Score, player2Score, player3Score, player4Score]
                 }
             ]
